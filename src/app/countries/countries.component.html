@@ -1,0 +1,105 @@
+<h1 style="font-weight: bold;">Countries</h1>
+
+<div class="mat-elevation-z8">
+    <table mat-table  [dataSource]="dataSource" multiTemplateDataRows>
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef=""></mat-header-cell>
+        <mat-cell *matCellDef="let row" style="align-items: center; text-align: center;"> 
+            <h3>{{row.name}}</h3>
+            <button mat-button [routerLink]="'/country/'+row.code">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 9L12.17 9L6.58 14.59L8 16L16 8L8 0L6.59 1.41L12.17 7L0 7L0 9Z" fill="#2962FF"/>
+                </svg>
+            </button>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="continent">
+        <mat-header-cell *matHeaderCellDef=""></mat-header-cell>
+        <mat-cell *matCellDef="let row">Континент</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="continentName">
+        <mat-header-cell *matHeaderCellDef=""></mat-header-cell>
+        <mat-cell *matCellDef="let row" class="table-value">{{row.continent.name}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="phone">
+        <mat-header-cell *matHeaderCellDef=""></mat-header-cell>
+        <mat-cell *matCellDef="let row">Код телефона</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="phoneNum">
+        <mat-header-cell *matHeaderCellDef=""></mat-header-cell>
+        <mat-cell *matCellDef="let row"  class="table-value">+{{row.phone}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="currency">
+        <mat-header-cell *matHeaderCellDef=""></mat-header-cell>
+        <mat-cell *matCellDef="let row">Валюта</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="currencyName">
+        <mat-header-cell *matHeaderCellDef=""></mat-header-cell>
+        <mat-cell *matCellDef="let row" class="table-value">{{row.currency}} </mat-cell>
+      </ng-container>
+      
+  
+      <mat-row style="border-bottom-style: none;" *matRowDef="let row; columns: ['name']"></mat-row >
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </table>
+
+    <mat-paginator
+        style="display: none;"
+        pageSize="5"
+    >
+    </mat-paginator>
+
+
+    <button mat-button  (click)="prevPage()">
+        <svg viewBox="0 0 24 24" focusable="false" class="mat-paginator-icon">
+            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path>
+        </svg>
+    </button>
+        {{getPageNum()}}
+    <button mat-button (click)="nextPage()">
+        <svg viewBox="0 0 24 24" focusable="false" class="mat-paginator-icon">
+            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
+        </svg>
+    </button>
+</div>
+
+
+
+<div class="sidebar">
+  <h1>Фильтры</h1>
+  <mat-form-field appearance="fill">
+      <mat-label>Название</mat-label>
+      <input matInput [formControl]="nameSearchInput">
+  </mat-form-field>
+  
+  <mat-form-field appearance="fill">
+      <mat-label>Валюта</mat-label>
+      <mat-select name="continent" [formControl]="currencySelect" multiple >
+          <mat-option value="usd">USD</mat-option>
+          <mat-option  value="eur">EUR</mat-option>
+          <mat-option  value="htg">HTG</mat-option>
+          <mat-option  value="gbp">GBP</mat-option>
+          <mat-option  value="rub">RUB</mat-option>
+          <mat-option  value="cny">CNY</mat-option>
+      </mat-select>
+  </mat-form-field>
+
+  <h3>Континент:</h3>
+
+  <mat-radio-group [formControl]="continentRadio" >
+      <p><mat-radio-button value="">All</mat-radio-button></p>
+      <p><mat-radio-button value="africa">Africa</mat-radio-button></p>
+      <p><mat-radio-button value="antarctica">Antarctica</mat-radio-button></p>
+      <p><mat-radio-button value="asia">Asia</mat-radio-button></p>
+      <p><mat-radio-button value="europe">Europe</mat-radio-button></p>
+      <p><mat-radio-button value="north america">North america</mat-radio-button></p>
+      <p><mat-radio-button value="oceania">Oceania</mat-radio-button></p>
+      <p><mat-radio-button value="south america">South america</mat-radio-button></p>
+  </mat-radio-group>
+</div>

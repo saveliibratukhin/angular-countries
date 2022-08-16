@@ -1,0 +1,51 @@
+table{
+    width: 70%;
+}
+
+h1 {
+    margin-bottom: 30px;
+}
+
+h3 {
+    font-weight: bold;
+    margin: 0;
+    padding-right: 25px;
+}
+
+.mat-elevation-z8{
+    box-shadow: none;
+
+    .table-value{
+        color: blue;
+        padding-right: 30px;
+    }
+}
+
+.sidebar{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 20%;
+    height: 100%;
+    border-left: 1px solid gray;
+    padding: 40px;
+
+    * {
+        margin-top: 5px;
+    }
+
+    mat-form-field{
+        width: 100%;
+    }
+
+    ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+        background-color: #fff;
+      }
+
+    ::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
+        background-color: blue!important;   /*inner circle color change*/
+    }
+    ::ng-deep.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+        border-color:blue!important; /*outer ring color change*/
+    }
+}
